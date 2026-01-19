@@ -9,7 +9,8 @@ def call(arg) {
 }
 
 private def runString(String script) {
-    sh buildCommand(script)
+    def result = sh buildCommand(script)
+    return result
 }
 
 private def runMap(Map args) {
@@ -20,7 +21,8 @@ private def runMap(Map args) {
     def newArgs = args.clone()
     newArgs.script = buildCommand(args.script)
 
-    sh newArgs
+    def result = sh newArgs
+    return result
 }
 
 private String getSystem() {
