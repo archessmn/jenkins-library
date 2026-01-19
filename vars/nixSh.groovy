@@ -40,7 +40,5 @@ private String buildCommand(String script) {
         error 'Unable to determine Nix system'
     }
 
-    return "nix shell .#devShells.${system}.default --command \
-                env TERM=dumb \
-                bash -c '${script.replace("'", "'\\''")}'"
+    return "nix develop .#devShells.${system}.default --command ${script}"
 }
