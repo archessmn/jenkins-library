@@ -1,5 +1,3 @@
-def _cachedSystem = null
-
 def call(arg) {
     if (arg instanceof String) {
         return runString(arg)
@@ -26,12 +24,10 @@ private def runMap(Map args) {
 }
 
 private String getSystem() {
-    if (_cachedSystem == null) {
-        _cachedSystem = sh(
-            script: 'nix config show system',
-            returnStdout: true
-        ).trim()
-    }
+    def _cachedSystem = sh(
+        script: 'nix config show system',
+        returnStdout: true
+    ).trim()
     return _cachedSystem
 }
 
